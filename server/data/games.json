@@ -1,0 +1,20 @@
+{
+    "6774c3fd-aef9-4e76-a7b0-1de1cf0f9ccd": {
+            "title": "Fantasy game",
+            "category": "Fantasy",
+            "maxLevel": "204",
+            "imageUrl": "https://wbi.net.au/wp-content/uploads/2019/04/person-icon-silhouette-png-12-1-e1555982192147.png",
+            "summary": "Some summary here",
+            "_id": "6774c3fd-aef9-4e76-a7b0-1de1cf0f9ccd"
+        },
+
+        "16ba93a2-4ec4-46b5-8ac5-36bbbaa22549": {
+            "title": "Action Game",
+            "category": "Action",
+            "maxLevel": "149",
+            "imageUrl": "https://media.gq-magazine.co.uk/photos/5dfcb24083ac020008511b32/16:9/w_2560%2Cc_limit/20191220-PS4-08.jpg",
+            "summary": "Action now!",
+            "_id": "16ba93a2-4ec4-46b5-8ac5-36bbbaa22549"
+        }
+    
+}
