@@ -11,3 +11,10 @@ export const create = async (gameId, username, text) => {
 
     return newComment;
 }
+
+
+export const getAll = async ()=>{
+    const result = await request.get(baseUrl);
+
+    return Object.values(result)
+}
