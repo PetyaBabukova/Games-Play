@@ -7,7 +7,7 @@ import * as commentService from '../../services/commentServices';
 export default function GameDetails() {
     const { gameId } = useParams();
     const [game, setGame] = useState({});
-    const [comments, setComments] = useState([])
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         if (gameId) {
@@ -15,7 +15,7 @@ export default function GameDetails() {
                 .then(setGame);
         }
 
-        commentService.getAll()
+        commentService.getAll(gameId)
             .then(setComments)
     }, [gameId]);
 
