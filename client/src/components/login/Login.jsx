@@ -1,13 +1,20 @@
+import { useContext } from 'react';
+
 import useForm from '../../hooks/useForm';
+import AuthContext from '../../contexts/authContext';
 
 const LoginFormKeys = {
     EMAIL: 'email',
     PASSWORD: 'password'
 }
 
-export default function Login({
-    loginSubmitHandler
-}) {
+export default function Login(
+    
+    // {loginSubmitHandler} // Without useContext
+) {
+
+    const {loginSubmitHandler} = useContext(AuthContext); //With useContext
+
     const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
         [LoginFormKeys.EMAIL]: '',
         [LoginFormKeys.EMAIL]: '',
