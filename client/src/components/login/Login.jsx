@@ -17,7 +17,7 @@ export default function Login(
 
     const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
         [LoginFormKeys.EMAIL]: '',
-        [LoginFormKeys.EMAIL]: '',
+        [LoginFormKeys.PASSWORD]: '',
     });
 
     return (
