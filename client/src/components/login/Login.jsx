@@ -1,11 +1,16 @@
-import useForm from '../../hooks/useForm'
+import useForm from '../../hooks/useForm';
+
+const LoginFormKeys = {
+    EMAIL: 'email',
+    PASSWORD: 'password'
+}
 
 export default function Login({
     loginSubmitHandler
 }) {
-    const{values, onChange, onSubmit} = useForm(loginSubmitHandler, {
-        email: '',
-        password: '',
+    const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+        [LoginFormKeys.EMAIL]: '',
+        [LoginFormKeys.EMAIL]: '',
     });
 
     return (
@@ -17,25 +22,25 @@ export default function Login({
                     <h1>Login</h1>
 
                     <label htmlFor="email">Email:</label>
-                    <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    placeholder="Sokka@gmail.com" 
-                    onChange={onChange}
-                    value={values.email}
+                    <input
+                        type="email"
+                        id="email"
+                        name={LoginFormKeys.EMAIL}
+                        placeholder="Sokka@gmail.com"
+                        onChange={onChange}
+                        value={values[LoginFormKeys.EMAIL]}
                     />
 
                     <label htmlFor="login-pass">Password:</label>
-                    <input 
-                    type="password" 
-                    id="login-password" 
-                    name="password" 
-                    onChange={onChange}
-                    value={values.password}
+                    <input
+                        type="password"
+                        id="login-password"
+                        name={LoginFormKeys.PASSWORD}
+                        onChange={onChange}
+                        value={values[LoginFormKeys.PASSWORD]}
                     />
 
-                    <input type="submit" className="btn submit" value="Login"/>
+                    <input type="submit" className="btn submit" value="Login" />
                     <p className="field">
                         <span>If you don't have profile click <a href="#">here</a></span>
                     </p>
