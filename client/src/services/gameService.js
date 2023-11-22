@@ -1,11 +1,11 @@
 import * as request from "../lib/request";
 
-const baseUrl = 'http://localhost:3030/jsonstore/games';
+const baseUrl = 'http://localhost:3030/data/games';
 
 export const getAll = async () => {
    const result = await request.get(baseUrl);
-//    console.log(result);
-   return Object.values(result);
+//    return Object.values(result); //Before the migration, the result was in object. After migr. it is an array
+   return values(result);
 };
 
 export const getOne = async(gameId)=>{

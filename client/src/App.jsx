@@ -13,32 +13,58 @@ import GameCreate from './components/game-create/GameCreate';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import GameDetails from './components/game-details/GameDetails';
+import Logout from './components/logout/Logout';
 
 
 
 function App() {
 	const navigate = useNavigate();
-	const [auth, setAuth] = useState({});
+	const [auth, setAuth] = useState(()=>{ 
+		localStorage.removeItem('accessToken'); //This is for asuure that the localStorrage is empty
+		return {};
+	});
 
 	const loginSubmitHandler = async (values) => {
-		const result = await authService.login(values.email, values.password);
-		setAuth(result);
-		navigate(Path.Home);
+		try {
+			const result = await authService.login(values.email, values.password);
+			setAuth(result);
+
+			localStorage.setItem('accessToken', result.accessToken);
+
+			navigate(Path.Home);
+		} catch (error) {
+			console.error('Login failed:', error);
+			// Handle the error appropriately
+			// For example, you might want to set an error state, show a message to the user, etc.
+		}
 	};
+
 
 	const registerSubmitHandler = async (values) => {
 		//Validations!
 		const result = await authService.register(values.email, values.password);
 		setAuth(result);
+
+		localStorage.setItem('accessToken', result.accessToken);
+
 		navigate(Path.Home);
 	};
 
-	const values = { 
+	const logoutHandler = () => {
+
+		localStorage.removeItem('accessToken');
+
+		setAuth({});
+	}
+
+	const values = {
 		registerSubmitHandler,
 		loginSubmitHandler,
-		username:auth.username || auth.email,
+		logoutHandler,
+		username: auth.username || auth.email,
 		email: auth.email,
-		isAuthenticated: !!auth.email
+		// isAuthenticated: !!auth.email // First variant
+		isAuthenticated: !!auth.accessToken,
 	};
 
 
@@ -52,6 +78,7 @@ function App() {
 					<Route path={Path.Home} element={<Home />} />
 					<Route path='/games' element={<GameList />} />
 					<Route path='/games/create' element={<GameCreate />} />
+					<Route path={Path.Logout} element={<Logout />} />
 					{/* Without useContext */}
 					{/* <Route path='/login' element={<Login loginSubmitHandler={loginSubmitHandler} />} />  */}
 
