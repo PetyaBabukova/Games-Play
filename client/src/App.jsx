@@ -1,10 +1,7 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import * as authService from './services/authService';
 import { AuthProvider } from './contexts/authContext';
 import Path from './paths';
-
 
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
@@ -18,59 +15,9 @@ import Logout from './components/logout/Logout';
 
 
 function App() {
-	const navigate = useNavigate();
-	const [auth, setAuth] = useState(()=>{ 
-		localStorage.removeItem('accessToken'); //This is for asuure that the localStorrage is empty
-		return {};
-	});
-
-	const loginSubmitHandler = async (values) => {
-		try {
-			const result = await authService.login(values.email, values.password);
-			setAuth(result);
-
-			localStorage.setItem('accessToken', result.accessToken);
-
-			navigate(Path.Home);
-		} catch (error) {
-			console.error('Login failed:', error);
-			// Handle the error appropriately
-			// For example, you might want to set an error state, show a message to the user, etc.
-		}
-	};
-
-
-	const registerSubmitHandler = async (values) => {
-		//Validations!
-		const result = await authService.register(values.email, values.password);
-		setAuth(result);
-
-		localStorage.setItem('accessToken', result.accessToken);
-
-		navigate(Path.Home);
-	};
-
-	const logoutHandler = () => {
-
-		localStorage.removeItem('accessToken');
-
-		setAuth({});
-	}
-
-	const values = {
-		registerSubmitHandler,
-		loginSubmitHandler,
-		logoutHandler,
-		username: auth.username || auth.email,
-		email: auth.email,
-		isAuthenticated: !!auth.email // First variant
-		// isAuthenticated: !!auth.accessToken,
-	};
-
-
 
 	return (
-		<AuthProvider value={values}>
+		<AuthProvider >
 
 			<div id="box">
 				<Header />
