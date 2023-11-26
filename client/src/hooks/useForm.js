@@ -9,6 +9,8 @@ export default function useForm ( submitHandler, initialValues) {
             ...state, 
             [e.target.name]: e.target.value 
         }))
+
+        console.log(state);
     };
 
     const onSubmit = (e) =>{

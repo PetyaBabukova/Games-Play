@@ -11,14 +11,14 @@ const buildOptions = (data) => {
     }
 
     const token = localStorage.getItem('accessToken');
-    console.log(token);
+    // console.log(token);
     if (token) {
         options.headers = {
             ...options.headers,
             'X-Authorization': token
         };
     }
-    console.log(options);
+    // console.log(options);
     return options;
 };
 const request = async (method, url, data) => {
